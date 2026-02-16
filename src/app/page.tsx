@@ -21,7 +21,7 @@ import { useFeaturedProducts, useCategoryCounts } from '@/hooks/useProducts';
 import { Button } from '@/components/ui/Button';
 import { CATEGORIES, BRANDS, IMAGES } from '@/lib/constants';
 import { formatPrice } from '@/lib/utils';
-import { useCartStore } from '@/store/cartStore';
+import { useCart } from '@/hooks/useCart';
 
 /* ─── animation helpers ─── */
 const fadeUp = {
@@ -54,7 +54,7 @@ const DARK_CATEGORIES = [
 export default function HomePage() {
   const { data: featuredProducts, isLoading } = useFeaturedProducts();
   const { data: categoryCounts } = useCategoryCounts();
-  const { addToCart } = useCartStore();
+  const { addToCart } = useCart();
 
   const totalProducts = categoryCounts
     ? Object.values(categoryCounts).reduce((sum, c) => sum + c, 0)
