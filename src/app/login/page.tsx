@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
@@ -20,7 +20,7 @@ const loginSchema = z.object({
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
-export default function LoginPage() {
+function LoginForm() {
   const { login, isLoginLoading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
@@ -112,5 +112,13 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[80vh] flex items-center justify-center"><div className="w-8 h-8 border-4 border-accent-500 border-t-transparent rounded-full animate-spin" /></div>}>
+      <LoginForm />
+    </Suspense>
   );
 }
