@@ -18,7 +18,7 @@ const stats = [
 const team = [
   { name: 'Omkar Ingale', role: 'Founder & CEO', bio: 'Passionate rider with 15+ years in motorcycle safety gear.' },
   { name: 'Kunal Kudande', role: 'Head of Operations', bio: 'Expert in supply chain and quality assurance.' },
-  { name: 'Komal Ingale', role: 'Product Specialist', bio: 'ISI/DOT certification expert helping riders choose right.' },
+  { name: 'Omshree Ingale', role: 'Product Specialist', bio: 'ISI/DOT certification expert helping riders choose right.' },
 ];
 
 const values = [

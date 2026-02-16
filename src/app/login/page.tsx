@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
@@ -22,6 +23,9 @@ type LoginFormData = z.infer<typeof loginSchema>;
 export default function LoginPage() {
   const { login, isLoginLoading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get('redirect');
 
   const {
     register,
@@ -32,7 +36,13 @@ export default function LoginPage() {
   });
 
   const onSubmit = (data: LoginFormData) => {
-    login(data);
+    login(data, {
+      onSuccess: () => {
+        if (redirectTo) {
+          router.push(redirectTo);
+        }
+      },
+    });
   };
 
   return (

@@ -74,7 +74,7 @@ export interface ProductSpecification {
   features: string[];
 }
 
-export type ProductCategory = 'FULL_FACE' | 'HALF_FACE' | 'OPEN_FACE' | 'MODULAR' | 'OFF_ROAD' | 'KIDS';
+export type ProductCategory = 'FULL_FACE' | 'HALF_FACE' | 'OPEN_FACE' | 'MODULAR' | 'OFF_ROAD' | 'KIDS' | 'LADIES';
 
 export type ProductSize = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'FREE_SIZE';
 

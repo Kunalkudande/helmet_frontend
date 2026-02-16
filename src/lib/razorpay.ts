@@ -80,8 +80,18 @@ export async function openRazorpayCheckout({
       email: prefill?.email || '',
       contact: prefill?.contact || '',
     },
+    config: {
+      display: {
+        blocks: {
+          upi: { name: 'Pay via UPI', instruments: [{ method: 'upi' }] },
+          other: { name: 'Other Methods', instruments: [{ method: 'card' }, { method: 'netbanking' }, { method: 'wallet' }] },
+        },
+        sequence: ['block.upi', 'block.other'],
+        preferences: { show_default_blocks: true },
+      },
+    },
     theme: {
-      color: '#0A0A0A',
+      color: '#f97316',
     },
     modal: {
       ondismiss: () => {
@@ -97,12 +107,15 @@ export async function openRazorpayCheckout({
 
   try {
     const rzp = new window.Razorpay(options);
+    console.log('Razorpay options:', { key, amount, currency, order_id: orderId });
     rzp.on('payment.failed', (response: any) => {
       const err = response.error;
+      console.error('Razorpay payment.failed:', err);
       onFailure(err);
     });
     rzp.open();
   } catch (err) {
+    console.error('Razorpay open error:', err);
     onFailure(err);
   }
 }

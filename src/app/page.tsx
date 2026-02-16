@@ -48,6 +48,7 @@ const DARK_CATEGORIES = [
   { value: 'MODULAR', label: 'Modular', desc: 'Versatile flip-up for touring', image: '/updated_images/helmet-modular.jpg' },
   { value: 'HALF_FACE', label: 'Half Face', desc: 'Lightweight freedom on every road', image: '/updated_images/helmet-halfface.jpg' },
   { value: 'OFF_ROAD', label: 'Off-Road', desc: 'Built for dirt, dust & adventure', image: '/updated_images/helmet-offroad.jpg' },
+  { value: 'LADIES', label: 'Ladies', desc: 'Designed for women riders', image: '/updated_images/helmet-fullface.jpg' },
 ];
 
 export default function HomePage() {

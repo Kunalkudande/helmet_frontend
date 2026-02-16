@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/Button';
 
 export function CartDrawer() {
   const { isCartDrawerOpen, closeCartDrawer } = useUIStore();
-  const { items, totalItems, totalPrice, updateQuantity, removeItem, isUpdating, isEmpty } = useCart();
+  const { items, totalItems, totalPrice, updateQuantity, removeItem, isUpdating, isEmpty, isAuthenticated } = useCart();
 
   if (!isCartDrawerOpen) return null;
 
@@ -84,9 +84,9 @@ export function CartDrawer() {
                   View Cart
                 </Button>
               </Link>
-              <Link href="/checkout" onClick={closeCartDrawer} className="flex-1">
+              <Link href={isAuthenticated ? "/checkout" : "/login?redirect=/checkout"} onClick={closeCartDrawer} className="flex-1">
                 <Button fullWidth rightIcon={<ArrowRight size={16} />}>
-                  Checkout
+                  {isAuthenticated ? 'Checkout' : 'Login to Checkout'}
                 </Button>
               </Link>
             </div>

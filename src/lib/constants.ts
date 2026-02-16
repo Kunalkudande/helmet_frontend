@@ -18,6 +18,7 @@ export const BRAND_POSITIONING = {
 export const NAV_LINKS = [
   { label: 'Shop', href: '/products' },
   { label: 'Categories', href: '/categories' },
+  { label: 'Blog', href: '/blog' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ] as const;
@@ -30,6 +31,7 @@ export const CATEGORIES = [
   { value: 'MODULAR', label: 'Modular', description: 'Versatile flip-up', icon: 'flip-vertical', image: '/updated_images/helmet-modular.jpg' },
   { value: 'OFF_ROAD', label: 'Off Road', description: 'Adventure ready', icon: 'mountain', image: '/updated_images/helmet-offroad.jpg' },
   { value: 'KIDS', label: 'Kids', description: 'Junior collection', icon: 'baby', image: '/updated_images/helmet-halfface.jpg' },
+  { value: 'LADIES', label: 'Ladies', description: 'Designed for women', icon: 'heart', image: '/updated_images/helmet-fullface.jpg' },
 ] as const;
 
 // Image paths

@@ -84,7 +84,7 @@ export function Header() {
     }
   };
 
-  const cartItemCount = totalItems();
+  const cartItemCount = totalItems(isAuthenticated);
 
   return (
     <header

@@ -212,7 +212,7 @@ export default function AdminOrdersPage() {
                           }}
                         >
                           {ORDER_STATUSES.map((s) => (
-                            <option key={s.value} value={s.value}>{s.label}</option>
+                            <option key={s.value} value={s.value} className="bg-[hsl(0,0%,12%)] text-white">{s.label}</option>
                           ))}
                         </select>
                       </td>

@@ -93,6 +93,17 @@ export default function ProductDetailPage() {
     };
   }, [product]);
 
+  // Update document title for SEO
+  React.useEffect(() => {
+    if (product) {
+      document.title = `${product.name} - ${product.brand} | Bikers Brain`;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', product.description?.slice(0, 160) || '');
+      }
+    }
+  }, [product]);
+
   if (isLoading) return <ProductDetailSkeleton />;
   if (!product) {
     return (

@@ -54,6 +54,7 @@ export default function CheckoutPage() {
   const [couponLoading, setCouponLoading] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [pendingOrder, setPendingOrder] = useState<{ order: any; razorpayOrder: any } | null>(null);
+  const [orderCompleted, setOrderCompleted] = useState(false);
 
   const {
     register,
@@ -87,12 +88,12 @@ export default function CheckoutPage() {
     if (isAuthenticated) fetchAddresses();
   }, [isAuthenticated]);
 
-  // Redirect if cart is empty (but not if we have a pending payment to retry)
+  // Redirect if cart is empty (but not if we have a pending payment to retry or completed order)
   useEffect(() => {
-    if (!authLoading && isAuthenticated && isEmpty && !pendingOrder) {
+    if (!authLoading && isAuthenticated && isEmpty && !pendingOrder && !orderCompleted) {
       router.push('/cart');
     }
-  }, [isEmpty, isAuthenticated, authLoading, router, pendingOrder]);
+  }, [isEmpty, isAuthenticated, authLoading, router, pendingOrder, orderCompleted]);
 
   const handleAddAddress = async (data: AddressFormData) => {
     try {
@@ -150,6 +151,7 @@ export default function CheckoutPage() {
       },
       onSuccess: async (paymentResponse) => {
         try {
+          setOrderCompleted(true);
           await verifyPayment.mutateAsync({
             razorpay_order_id: paymentResponse.razorpay_order_id,
             razorpay_payment_id: paymentResponse.razorpay_payment_id,
@@ -201,12 +203,16 @@ export default function CheckoutPage() {
       const response = await createOrder.mutateAsync(orderData);
       const { order, razorpayOrder } = response;
 
+      console.log('Order created:', order?.id);
+      console.log('Razorpay order:', razorpayOrder);
+
       if (paymentMethod === 'RAZORPAY' && razorpayOrder) {
         // Save pending order for retry capability
         setPendingOrder({ order, razorpayOrder });
         openPaymentModal(order, razorpayOrder);
       } else {
         // COD order — cart already cleared by backend
+        setOrderCompleted(true);
         fetchCart(); // refresh cart
         toast.success('Order placed successfully!');
         router.push(`/account/orders/${order.id}?success=true`);

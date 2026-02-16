@@ -5,7 +5,7 @@ import Link from 'next/link';
 // Using native img for logo to avoid Next.js caching issues
 import { useRouter, usePathname } from 'next/navigation';
 import {
-  LayoutDashboard, Package, ShoppingBag, Users, LogOut, Menu, X, ChevronRight, Bell, Search, Home, Eye,
+  LayoutDashboard, Package, ShoppingBag, Users, LogOut, Menu, X, ChevronRight, Bell, Search, Home, Eye, Tag, FileText,
 } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
 import { cn } from '@/lib/utils';
@@ -16,6 +16,8 @@ const adminNav = [
   { label: 'Orders', href: '/admin/orders', icon: ShoppingBag },
   { label: 'Products', href: '/admin/products', icon: Package },
   { label: 'Customers', href: '/admin/customers', icon: Users },
+  { label: 'Coupons', href: '/admin/coupons', icon: Tag },
+  { label: 'Blog', href: '/admin/blog', icon: FileText },
   { label: 'Visitors', href: '/admin/visitors', icon: Eye },
 ];
 

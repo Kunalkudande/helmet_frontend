@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/Button';
 
 export default function CartPage() {
   const router = useRouter();
-  const { items, totalItems, totalPrice, updateQuantity, removeItem, clearCart, isUpdating, isEmpty } = useCart();
+  const { items, totalItems, totalPrice, updateQuantity, removeItem, clearCart, isUpdating, isEmpty, isAuthenticated } = useCart();
 
   if (isEmpty) {
     return (
@@ -73,7 +73,13 @@ export default function CartPage() {
               <CartSummary
                 subtotal={totalPrice}
                 itemCount={totalItems}
-                onCheckout={() => router.push('/checkout')}
+                onCheckout={() => {
+                  if (!isAuthenticated) {
+                    router.push('/login?redirect=/checkout');
+                    return;
+                  }
+                  router.push('/checkout');
+                }}
               />
             </div>
           </div>

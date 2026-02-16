@@ -19,9 +19,12 @@ const CATEGORIES = [
   { value: 'HALF_FACE', label: 'Half Face', desc: 'Open face with chin bar' },
   { value: 'OPEN_FACE', label: 'Open Face', desc: 'Three-quarter coverage' },
   { value: 'MODULAR', label: 'Modular', desc: 'Flip-up chin bar' },
+  { value: 'OFF_ROAD', label: 'Off Road', desc: 'For dirt & adventure riding' },
+  { value: 'KIDS', label: 'Kids', desc: 'Junior helmets for young riders' },
+  { value: 'LADIES', label: 'Ladies', desc: 'Designed for women riders' },
 ];
 
-const SIZES = ['S', 'M', 'L', 'XL', 'XXL'] as const;
+const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'FREE_SIZE'] as const;
 
 const VISOR_TYPES = [
   'Clear', 'Tinted', 'Smoke', 'Iridium', 'Pinlock Ready', 'Anti-fog', 'Double Visor', 'None',
@@ -793,7 +796,7 @@ export default function AddProductPage() {
                     <select
                       value={specs.visorType}
                       onChange={(e) => setSpecs({ ...specs, visorType: e.target.value })}
-                      className={cn(inputClass(), 'bg-white')}
+                      className={cn(inputClass(), 'bg-white/5')}
                     >
                       <option value="">Select visor type</option>
                       {VISOR_TYPES.map((v) => (

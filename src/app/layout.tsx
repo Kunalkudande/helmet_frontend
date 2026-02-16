@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     'Studds helmets',
     'LS2 helmets',
   ],
-  authors: [{ name: 'HelmetStore' }],
-  creator: 'HelmetStore',
+  authors: [{ name: 'Bikers Brain' }],
+  creator: 'Bikers Brain',
   openGraph: {
     type: 'website',
     locale: 'en_IN',
